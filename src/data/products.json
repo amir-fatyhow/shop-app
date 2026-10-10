@@ -1,0 +1,14 @@
+[
+  { "id": 1, "name": "Смартфон Galaxy X", "price": 59990, "category": "Электроника", "image": "https://picsum.photos/seed/phone1/300/200", "description": "Флагманский смартфон с OLED-экраном", "inStock": true, "rating": 4.7 },
+  { "id": 2, "name": "Ноутбук ProBook", "price": 89990, "category": "Электроника", "image": "https://picsum.photos/seed/laptop1/300/200", "description": "Лёгкий ноутбук для работы и учёбы", "inStock": true, "rating": 4.5 },
+  { "id": 3, "name": "Наушники AirSound", "price": 12990, "category": "Электроника", "image": "https://picsum.photos/seed/headphones1/300/200", "description": "Беспроводные наушники с шумоподавлением", "inStock": true, "rating": 4.8 },
+  { "id": 4, "name": "Планшет TabLite", "price": 34990, "category": "Электроника", "image": "https://picsum.photos/seed/tablet1/300/200", "description": "Планшет 10 дюймов для развлечений", "inStock": false, "rating": 4.2 },
+  { "id": 5, "name": "Книга «Чистый код»", "price": 2500, "category": "Книги", "image": "https://picsum.photos/seed/book1/300/200", "description": "Роберт Мартин о том, как писать хороший код", "inStock": true, "rating": 4.9 },
+  { "id": 6, "name": "Книга «Автоматизация тестирования»", "price": 3200, "category": "Книги", "image": "https://picsum.photos/seed/book2/300/200", "description": "Практическое руководство по автотестам", "inStock": true, "rating": 4.6 },
+  { "id": 7, "name": "Книга «Паттерны проектирования»", "price": 2800, "category": "Книги", "image": "https://picsum.photos/seed/book3/300/200", "description": "Классика от банды четырёх", "inStock": true, "rating": 4.7 },
+  { "id": 8, "name": "Книга «Python для всех»", "price": 1900, "category": "Книги", "image": "https://picsum.photos/seed/book4/300/200", "description": "Введение в Python для начинающих", "inStock": true, "rating": 4.4 },
+  { "id": 9, "name": "Футболка QA Engineer", "price": 1500, "category": "Одежда", "image": "https://picsum.photos/seed/tshirt1/300/200", "description": "Хлопковая футболка с принтом", "inStock": true, "rating": 4.3 },
+  { "id": 10, "name": "Худи Developer", "price": 3500, "category": "Одежда", "image": "https://picsum.photos/seed/hoodie1/300/200", "description": "Тёплое худи для долгих сессий", "inStock": true, "rating": 4.6 },
+  { "id": 11, "name": "Кепка Tester", "price": 1200, "category": "Одежда", "image": "https://picsum.photos/seed/cap1/300/200", "description": "Кепка с логотипом", "inStock": false, "rating": 4.1 },
+  { "id": 12, "name": "Носки «Bug hunter»", "price": 800, "category": "Одежда", "image": "https://picsum.photos/seed/socks1/300/200", "description": "Носки для настоящих охотников за багами", "inStock": true, "rating": 4.5 }
+]
