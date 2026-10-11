@@ -1,7 +1,16 @@
 import { Link } from 'react-router-dom';
 import { formatPrice } from '../utils/formatPrice';
+import { useCart } from '../context/CartContext';
 
 export default function ProductCard({ product }) {
+  const { addToCart } = useCart();
+
+  const handleAdd = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart(product);
+  };
+
   return (
     <Link
       to={`/product/${product.id}`}
@@ -22,6 +31,18 @@ export default function ProductCard({ product }) {
             Нет в наличии
           </p>
         )}
+        <button
+          onClick={handleAdd}
+          disabled={!product.inStock}
+          className={`mt-3 w-full py-2 rounded font-medium ${
+            product.inStock
+              ? 'bg-blue-600 text-white hover:bg-blue-700'
+              : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+          }`}
+          data-testid={`add-to-cart-${product.id}`}
+        >
+          {product.inStock ? 'В корзину' : 'Нет в наличии'}
+        </button>
       </div>
     </Link>
   );
