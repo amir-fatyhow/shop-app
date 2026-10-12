@@ -45,7 +45,9 @@ export default function CatalogPage() {
       </div>
 
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-        <h2 className="text-xl font-semibold">Каталог</h2>
+        <h2 className="text-xl font-semibold" data-testid="catalog-heading">
+          Каталог
+        </h2>
         <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
           <SearchBar value={search} onChange={setSearch} />
           <CategoryFilter value={category} onChange={setCategory} />
