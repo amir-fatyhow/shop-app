@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 
 export default function Header() {
   const { totalCount } = useCart();
+  const { user, logout } = useAuth();
 
   return (
     <header className="bg-gray-900 text-white py-4 px-6 flex justify-between items-center">
@@ -22,7 +24,20 @@ export default function Header() {
             </span>
           )}
         </Link>
-        <Link to="/login" className="hover:underline" data-testid="nav-login">Войти</Link>
+        {user ? (
+          <div className="flex items-center gap-3">
+            <span data-testid="user-name">Привет, {user.name}</span>
+            <button
+              onClick={logout}
+              className="hover:underline text-sm text-gray-300"
+              data-testid="logout-button"
+            >
+              Выйти
+            </button>
+          </div>
+        ) : (
+          <Link to="/login" className="hover:underline" data-testid="nav-login">Войти</Link>
+        )}
       </nav>
     </header>
   );

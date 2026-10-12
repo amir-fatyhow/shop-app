@@ -1,3 +1,53 @@
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { formatPrice } from '../utils/formatPrice';
+
 export default function SuccessPage() {
-  return <div className="p-6" data-testid="success-page">Заказ оформлен (в разработке)</div>;
+  const [order, setOrder] = useState(null);
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem('shop-app-last-order');
+      setOrder(raw ? JSON.parse(raw) : null);
+    } catch {
+      setOrder(null);
+    }
+  }, []);
+
+  return (
+    <div className="max-w-2xl mx-auto p-6 text-center" data-testid="success-page">
+      <div className="text-6xl mb-4">✅</div>
+      <h1 className="text-3xl font-bold mb-4">Заказ оформлен!</h1>
+      <p className="text-gray-600 mb-6" data-testid="success-message">
+        Спасибо за покупку. Мы свяжемся с вами для подтверждения.
+      </p>
+
+      {order && (
+        <div
+          className="border rounded-lg p-6 text-left mb-6"
+          data-testid="order-details"
+        >
+          <p className="text-sm text-gray-500 mb-2">
+            Номер заказа: <span data-testid="order-id">{order.id}</span>
+          </p>
+          <p className="font-medium mb-1" data-testid="order-customer">
+            {order.customer.name}
+          </p>
+          <p className="text-sm text-gray-500 mb-1">{order.customer.email}</p>
+          <p className="text-sm text-gray-500 mb-4">{order.customer.address}</p>
+          <p className="text-lg font-bold" data-testid="order-total">
+            {formatPrice(order.total)}
+          </p>
+        </div>
+      )}
+
+      <Link
+        to="/"
+        className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 inline-block"
+        data-testid="back-to-catalog"
+      >
+        Вернуться в каталог
+      </Link>
+    </div>
+  );
 }
