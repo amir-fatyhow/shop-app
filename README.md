@@ -1,16 +1,29 @@
-# React + Vite
+# 🛒 ShopApp — демо интернет-магазин
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Учебный проект: React-приложение интернет-магазина с полным флоу покупки. Создан для практики автотестирования на Playwright (Python).
 
-Currently, two official plugins are available:
+## 🎯 Возможности
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- 📦 Каталог товаров с поиском и фильтрами по категориям
+- 🔍 Страница товара с деталями, рейтингом и описанием
+- 🛒 Корзина с изменением количества, удалением и подсчётом итога
+- 💾 Сохранение корзины в localStorage (переживает перезагрузку)
+- 📝 Оформление заказа с валидацией формы (имя, email, телефон, адрес)
+- ✅ Страница подтверждения заказа с номером и суммой
+- 👤 Mock-авторизация (email + пароль от 6 символов)
+- 📱 Адаптивная вёрстка (mobile / tablet / desktop)
 
-## React Compiler
+## 🛠️ Стек
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 18
+- Vite
+- Tailwind CSS v4
+- React Router DOM
+- Context API + useReducer
+- localStorage
 
-## Expanding the Oxlint configuration
+## 🚀 Запуск
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```bash
+npm install
+npm run dev
