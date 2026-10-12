@@ -73,13 +73,13 @@ export default function CheckoutPage() {
 
   if (items.length === 0) {
     return (
-      <div className="max-w-3xl mx-auto p-6 text-center" data-testid="empty-checkout">
-        <h1 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16 text-center" data-testid="empty-checkout">
+        <h1 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">
           Корзина пуста
         </h1>
         <Link
           to="/"
-          className="text-blue-600 dark:text-blue-400 hover:underline transition-colors"
+          className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium"
         >
           Перейти в каталог
         </Link>
@@ -88,25 +88,29 @@ export default function CheckoutPage() {
   }
 
   const inputClass = (hasError) =>
-    `w-full border rounded px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+    `w-full px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 ring-1 focus:outline-none focus:ring-2 transition-all ${
       hasError
-        ? 'border-red-500 dark:border-red-400'
-        : 'border-gray-300 dark:border-gray-600'
+        ? 'ring-red-400 dark:ring-red-500 focus:ring-red-500'
+        : 'ring-slate-200 dark:ring-slate-800 focus:ring-indigo-500'
     }`;
+
+  const labelClass = 'block mb-1.5 text-sm font-medium text-slate-700 dark:text-slate-300';
 
   const isValid = Object.keys(validate(form)).length === 0;
 
   return (
-    <div className="max-w-3xl mx-auto p-4 sm:p-6" data-testid="checkout-page">
-      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100">
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 sm:py-10" data-testid="checkout-page">
+      <h1 className="text-2xl sm:text-3xl font-extrabold mb-6 text-slate-900 dark:text-white">
         Оформление заказа
       </h1>
 
-      <form onSubmit={handleSubmit} className="space-y-4" data-testid="checkout-form">
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-5 rounded-3xl bg-white dark:bg-slate-900 ring-1 ring-slate-200 dark:ring-slate-800 p-6 sm:p-8 shadow-sm"
+        data-testid="checkout-form"
+      >
         <div>
-          <label className="block mb-1 font-medium text-gray-700 dark:text-gray-300">
-            Имя *
-          </label>
+          <label className={labelClass}>Имя *</label>
           <input
             type="text"
             value={form.name}
@@ -116,16 +120,14 @@ export default function CheckoutPage() {
             data-testid="checkout-name"
           />
           {touched.name && errors.name && (
-            <p className="text-red-500 dark:text-red-400 text-sm mt-1" data-testid="error-name">
+            <p className="text-red-500 dark:text-red-400 text-sm mt-1.5" data-testid="error-name">
               {errors.name}
             </p>
           )}
         </div>
 
         <div>
-          <label className="block mb-1 font-medium text-gray-700 dark:text-gray-300">
-            Email *
-          </label>
+          <label className={labelClass}>Email *</label>
           <input
             type="text"
             value={form.email}
@@ -135,16 +137,14 @@ export default function CheckoutPage() {
             data-testid="checkout-email"
           />
           {touched.email && errors.email && (
-            <p className="text-red-500 dark:text-red-400 text-sm mt-1" data-testid="error-email">
+            <p className="text-red-500 dark:text-red-400 text-sm mt-1.5" data-testid="error-email">
               {errors.email}
             </p>
           )}
         </div>
 
         <div>
-          <label className="block mb-1 font-medium text-gray-700 dark:text-gray-300">
-            Телефон *
-          </label>
+          <label className={labelClass}>Телефон *</label>
           <input
             type="text"
             value={form.phone}
@@ -155,16 +155,14 @@ export default function CheckoutPage() {
             data-testid="checkout-phone"
           />
           {touched.phone && errors.phone && (
-            <p className="text-red-500 dark:text-red-400 text-sm mt-1" data-testid="error-phone">
+            <p className="text-red-500 dark:text-red-400 text-sm mt-1.5" data-testid="error-phone">
               {errors.phone}
             </p>
           )}
         </div>
 
         <div>
-          <label className="block mb-1 font-medium text-gray-700 dark:text-gray-300">
-            Адрес доставки *
-          </label>
+          <label className={labelClass}>Адрес доставки *</label>
           <input
             type="text"
             value={form.address}
@@ -174,18 +172,25 @@ export default function CheckoutPage() {
             data-testid="checkout-address"
           />
           {touched.address && errors.address && (
-            <p className="text-red-500 dark:text-red-400 text-sm mt-1" data-testid="error-address">
+            <p className="text-red-500 dark:text-red-400 text-sm mt-1.5" data-testid="error-address">
               {errors.address}
             </p>
           )}
         </div>
 
         <div>
-          <label className="block mb-1 font-medium text-gray-700 dark:text-gray-300">
-            Оплата
-          </label>
-          <div className="flex gap-4 text-gray-900 dark:text-gray-100" data-testid="checkout-payment">
-            <label className="flex items-center gap-2 cursor-pointer">
+          <label className={labelClass}>Оплата</label>
+          <div
+            className="flex gap-3 text-slate-900 dark:text-white"
+            data-testid="checkout-payment"
+          >
+            <label
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl cursor-pointer transition-all ${
+                form.payment === 'card'
+                  ? 'bg-indigo-50 dark:bg-indigo-500/10 ring-2 ring-indigo-500'
+                  : 'bg-slate-50 dark:bg-slate-800 ring-1 ring-slate-200 dark:ring-slate-700'
+              }`}
+            >
               <input
                 type="radio"
                 name="payment"
@@ -193,10 +198,17 @@ export default function CheckoutPage() {
                 checked={form.payment === 'card'}
                 onChange={(e) => handleChange('payment', e.target.value)}
                 data-testid="payment-card"
+                className="accent-indigo-600"
               />
-              Карта
+              <span className="text-sm font-medium">Карта</span>
             </label>
-            <label className="flex items-center gap-2 cursor-pointer">
+            <label
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl cursor-pointer transition-all ${
+                form.payment === 'cash'
+                  ? 'bg-indigo-50 dark:bg-indigo-500/10 ring-2 ring-indigo-500'
+                  : 'bg-slate-50 dark:bg-slate-800 ring-1 ring-slate-200 dark:ring-slate-700'
+              }`}
+            >
               <input
                 type="radio"
                 name="payment"
@@ -204,15 +216,16 @@ export default function CheckoutPage() {
                 checked={form.payment === 'cash'}
                 onChange={(e) => handleChange('payment', e.target.value)}
                 data-testid="payment-cash"
+                className="accent-indigo-600"
               />
-              При получении
+              <span className="text-sm font-medium">При получении</span>
             </label>
           </div>
         </div>
 
-        <div className="border-t border-gray-200 dark:border-gray-700 pt-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-5 border-t border-slate-200 dark:border-slate-800">
           <p
-            className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100"
+            className="text-lg font-extrabold text-slate-900 dark:text-white"
             data-testid="checkout-total"
           >
             Итого: {formatPrice(totalPrice)}
@@ -220,10 +233,10 @@ export default function CheckoutPage() {
           <button
             type="submit"
             disabled={!isValid}
-            className={`px-6 py-3 rounded font-medium transition-all ${
+            className={`px-6 py-3 rounded-xl font-medium transition-all w-full sm:w-auto ${
               isValid
-                ? 'bg-blue-600 text-white hover:bg-blue-700 dark:hover:bg-blue-600 active:scale-95'
-                : 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed'
+                ? 'bg-gradient-to-br from-indigo-500 to-violet-600 text-white hover:from-indigo-600 hover:to-violet-700 shadow-sm hover:shadow-md active:scale-[0.98]'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 cursor-not-allowed'
             }`}
             data-testid="submit-order"
           >

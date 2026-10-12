@@ -7,14 +7,17 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="max-w-3xl mx-auto p-6 text-center" data-testid="empty-cart">
-        <h1 className="text-3xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16 text-center" data-testid="empty-cart">
+        <div className="text-6xl mb-4">🛒</div>
+        <h1 className="text-3xl font-bold mb-4 text-slate-900 dark:text-white">
           Корзина пуста
         </h1>
-        <p className="text-gray-500 dark:text-gray-400 mb-6">Добавьте товары из каталога</p>
+        <p className="text-slate-500 dark:text-slate-400 mb-6">
+          Добавьте товары из каталога
+        </p>
         <Link
           to="/"
-          className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 dark:hover:bg-blue-600 active:scale-95 transition-all inline-block"
+          className="inline-block bg-gradient-to-br from-indigo-500 to-violet-600 text-white px-6 py-3 rounded-xl font-medium hover:from-indigo-600 hover:to-violet-700 shadow-sm hover:shadow-md active:scale-[0.98] transition-all"
           data-testid="go-to-catalog"
         >
           Перейти в каталог
@@ -24,33 +27,35 @@ export default function CartPage() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto p-4 sm:p-6" data-testid="cart-page">
-      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-10" data-testid="cart-page">
+      <h1 className="text-2xl sm:text-3xl font-extrabold mb-6 text-slate-900 dark:text-white">
         Корзина
       </h1>
 
-      <div className="space-y-4 mb-6" data-testid="cart-items">
+      <div className="space-y-3 mb-6" data-testid="cart-items">
         {items.map((item) => (
           <div
             key={item.productId}
-            className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-shadow"
+            className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-4 rounded-2xl bg-white dark:bg-slate-900 ring-1 ring-slate-200 dark:ring-slate-800 hover:ring-slate-300 dark:hover:ring-slate-700 shadow-sm transition-all"
             data-testid={`cart-item-${item.productId}`}
           >
             <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
-              <img
-                src={item.image}
-                alt={item.name}
-                className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded flex-shrink-0"
-              />
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 flex-shrink-0">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <div className="flex-1 min-w-0">
                 <h3
-                  className="font-semibold text-sm sm:text-base truncate text-gray-900 dark:text-gray-100"
+                  className="font-semibold text-sm sm:text-base truncate text-slate-900 dark:text-white"
                   data-testid={`cart-item-name-${item.productId}`}
                 >
                   {item.name}
                 </h3>
                 <p
-                  className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm"
+                  className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm"
                   data-testid={`cart-item-price-${item.productId}`}
                 >
                   {formatPrice(item.price)}
@@ -62,20 +67,20 @@ export default function CartPage() {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setQuantity(item.productId, item.quantity - 1)}
-                  className="w-8 h-8 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-100 dark:hover:bg-gray-700 active:scale-90 transition-all text-gray-900 dark:text-gray-100"
+                  className="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-medium active:scale-90 transition-all"
                   data-testid={`decrease-${item.productId}`}
                 >
                   −
                 </button>
                 <span
-                  className="w-8 text-center text-gray-900 dark:text-gray-100"
+                  className="w-9 text-center font-medium text-slate-900 dark:text-white"
                   data-testid={`quantity-${item.productId}`}
                 >
                   {item.quantity}
                 </span>
                 <button
                   onClick={() => setQuantity(item.productId, item.quantity + 1)}
-                  className="w-8 h-8 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-100 dark:hover:bg-gray-700 active:scale-90 transition-all text-gray-900 dark:text-gray-100"
+                  className="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-medium active:scale-90 transition-all"
                   data-testid={`increase-${item.productId}`}
                 >
                   +
@@ -83,7 +88,7 @@ export default function CartPage() {
               </div>
 
               <p
-                className="w-20 sm:w-24 text-right font-semibold text-sm sm:text-base text-gray-900 dark:text-gray-100"
+                className="w-20 sm:w-24 text-right font-bold text-sm sm:text-base text-slate-900 dark:text-white"
                 data-testid={`subtotal-${item.productId}`}
               >
                 {formatPrice(item.price * item.quantity)}
@@ -91,7 +96,8 @@ export default function CartPage() {
 
               <button
                 onClick={() => removeFromCart(item.productId)}
-                className="text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 px-2 transition-colors"
+                className="w-8 h-8 rounded-lg text-slate-400 hover:text-red-500 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10 flex items-center justify-center transition-all"
+                aria-label="Удалить"
                 data-testid={`remove-${item.productId}`}
               >
                 ✕
@@ -101,35 +107,37 @@ export default function CartPage() {
         ))}
       </div>
 
-      <div className="border-t border-gray-200 dark:border-gray-700 pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <button
-          onClick={clearCart}
-          className="text-red-500 dark:text-red-400 hover:underline text-sm transition-colors"
-          data-testid="clear-cart"
-        >
-          Очистить корзину
-        </button>
+      <div className="rounded-2xl bg-white dark:bg-slate-900 ring-1 ring-slate-200 dark:ring-slate-800 p-6">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+          <button
+            onClick={clearCart}
+            className="text-sm text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 font-medium transition-colors"
+            data-testid="clear-cart"
+          >
+            Очистить корзину
+          </button>
 
-        <div className="text-right w-full sm:w-auto">
-          <p
-            className="text-gray-500 dark:text-gray-400 text-sm"
-            data-testid="total-count"
-          >
-            Товаров: {totalCount}
-          </p>
-          <p
-            className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100"
-            data-testid="total-price"
-          >
-            Итого: {formatPrice(totalPrice)}
-          </p>
-          <Link
-            to="/checkout"
-            className="inline-block mt-4 bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 dark:hover:bg-blue-600 active:scale-95 transition-all"
-            data-testid="checkout-button"
-          >
-            Оформить заказ
-          </Link>
+          <div className="text-right w-full sm:w-auto">
+            <p
+              className="text-sm text-slate-500 dark:text-slate-400 mb-1"
+              data-testid="total-count"
+            >
+              Товаров: {totalCount}
+            </p>
+            <p
+              className="text-2xl font-extrabold text-slate-900 dark:text-white mb-4"
+              data-testid="total-price"
+            >
+              Итого: {formatPrice(totalPrice)}
+            </p>
+            <Link
+              to="/checkout"
+              className="inline-block bg-gradient-to-br from-indigo-500 to-violet-600 text-white px-6 py-3 rounded-xl font-medium hover:from-indigo-600 hover:to-violet-700 shadow-sm hover:shadow-md active:scale-[0.98] transition-all"
+              data-testid="checkout-button"
+            >
+              Оформить заказ
+            </Link>
+          </div>
         </div>
       </div>
     </div>

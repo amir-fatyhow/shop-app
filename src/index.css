@@ -2,6 +2,37 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-html, body, #root {
-  min-height: 100%;
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100;
+  }
+
+  html, body, #root {
+    min-height: 100%;
+  }
+
+  button, a {
+    transition: color 0.15s ease, background-color 0.15s ease,
+                border-color 0.15s ease, box-shadow 0.2s ease,
+                transform 0.15s ease;
+  }
+
+  button:not(:disabled), a {
+    cursor: pointer;
+  }
+}
+
+/* Плавная смена темы */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }

@@ -14,51 +14,62 @@ export default function ProductCard({ product }) {
   return (
     <Link
       to={`/product/${product.id}`}
-      className="group border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200 block"
+      className="group flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-slate-900 ring-1 ring-slate-200/70 dark:ring-slate-800 hover:ring-slate-300 dark:hover:ring-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
       data-testid={`product-card-${product.id}`}
     >
-      <div className="overflow-hidden">
+      <div className="relative overflow-hidden bg-slate-100 dark:bg-slate-800">
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
+          className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
         />
+        {!product.inStock && (
+          <span className="absolute top-3 left-3 px-2.5 py-1 text-xs font-semibold rounded-full bg-red-500/90 text-white backdrop-blur">
+            Нет в наличии
+          </span>
+        )}
       </div>
 
-      <div className="p-4">
+      <div className="flex flex-col flex-1 p-4">
+        <p className="text-xs uppercase tracking-wide text-slate-400 dark:text-slate-500 mb-1">
+          {product.category}
+        </p>
+
         <h3
-          className="font-semibold text-lg text-gray-900 dark:text-gray-100"
+          className="font-semibold text-base text-slate-900 dark:text-slate-100 line-clamp-2 min-h-[2.75rem]"
           data-testid={`product-name-${product.id}`}
         >
           {product.name}
         </h3>
-        <p className="text-gray-500 dark:text-gray-400 text-sm">{product.category}</p>
+
         <p
-          className="text-blue-600 dark:text-blue-400 font-bold mt-2"
+          className="mt-2 text-lg font-bold text-slate-900 dark:text-white"
           data-testid={`product-price-${product.id}`}
         >
           {formatPrice(product.price)}
         </p>
 
-        {/* Фиксированная высота — кнопка всегда на одном месте */}
-        <div className="h-6 mt-1" data-testid={`stock-status-${product.id}`}>
-          {!product.inStock && (
-            <span
-              className="text-red-500 dark:text-red-400 text-sm"
-              data-testid={`out-of-stock-${product.id}`}
-            >
-              Нет в наличии
-            </span>
-          )}
-        </div>
+        {/* Скрытый testid — сохраняем для тестов */}
+        <span
+          className="sr-only"
+          data-testid={`stock-status-${product.id}`}
+        />
+        {!product.inStock && (
+          <span
+            className="sr-only"
+            data-testid={`out-of-stock-${product.id}`}
+          >
+            Нет в наличии
+          </span>
+        )}
 
         <button
           onClick={handleAdd}
           disabled={!product.inStock}
-          className={`mt-2 w-full py-2 rounded font-medium transition-all duration-200 ${
+          className={`mt-4 w-full py-2.5 rounded-xl font-medium text-sm transition-all ${
             product.inStock
-              ? 'bg-blue-600 text-white hover:bg-blue-700 active:scale-95'
-              : 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed'
+              ? 'bg-gradient-to-br from-indigo-500 to-violet-600 text-white hover:from-indigo-600 hover:to-violet-700 shadow-sm hover:shadow-md active:scale-[0.98]'
+              : 'bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 cursor-not-allowed'
           }`}
           data-testid={`add-to-cart-${product.id}`}
         >

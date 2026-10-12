@@ -11,13 +11,14 @@ export default function LoginPage() {
 
   if (user) {
     return (
-      <div className="max-w-md mx-auto p-6 text-center" data-testid="already-logged-in">
-        <h1 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+      <div className="max-w-md mx-auto px-4 sm:px-6 py-16 text-center" data-testid="already-logged-in">
+        <div className="text-5xl mb-4">👋</div>
+        <h1 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">
           Вы уже вошли как {user.name}
         </h1>
         <button
           onClick={() => navigate('/')}
-          className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 dark:hover:bg-blue-600 active:scale-95 transition-all"
+          className="bg-gradient-to-br from-indigo-500 to-violet-600 text-white px-6 py-3 rounded-xl font-medium hover:from-indigo-600 hover:to-violet-700 shadow-sm hover:shadow-md active:scale-[0.98] transition-all"
         >
           На главную
         </button>
@@ -37,62 +38,62 @@ export default function LoginPage() {
   };
 
   const inputClass =
-    'w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all';
+    'w-full px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 ring-1 ring-slate-200 dark:ring-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all';
+
+  const labelClass = 'block mb-1.5 text-sm font-medium text-slate-700 dark:text-slate-300';
 
   return (
-    <div className="max-w-md mx-auto p-4 sm:p-6" data-testid="login-page">
-      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100">
-        Вход
-      </h1>
+    <div className="max-w-md mx-auto px-4 sm:px-6 py-10 sm:py-16" data-testid="login-page">
+      <div className="rounded-3xl bg-white dark:bg-slate-900 ring-1 ring-slate-200 dark:ring-slate-800 p-6 sm:p-8 shadow-sm">
+        <h1 className="text-2xl sm:text-3xl font-extrabold mb-1 text-slate-900 dark:text-white">
+          Вход
+        </h1>
+        <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+          Войдите, чтобы продолжить покупки
+        </p>
 
-      <form onSubmit={handleSubmit} className="space-y-4" data-testid="login-form">
-        <div>
-          <label className="block mb-1 font-medium text-gray-700 dark:text-gray-300">
-            Email
-          </label>
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className={inputClass}
-            data-testid="login-email"
-          />
-        </div>
+        <form onSubmit={handleSubmit} className="space-y-4" data-testid="login-form">
+          <div>
+            <label className={labelClass}>Email</label>
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className={inputClass}
+              data-testid="login-email"
+            />
+          </div>
 
-        <div>
-          <label className="block mb-1 font-medium text-gray-700 dark:text-gray-300">
-            Пароль
-          </label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className={inputClass}
-            data-testid="login-password"
-          />
-        </div>
+          <div>
+            <label className={labelClass}>Пароль</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className={inputClass}
+              data-testid="login-password"
+            />
+          </div>
 
-        {error && (
-          <p className="text-red-500 dark:text-red-400 text-sm" data-testid="login-error">
-            {error}
-          </p>
-        )}
+          {error && (
+            <div className="px-4 py-2.5 rounded-xl bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 text-sm font-medium" data-testid="login-error">
+              {error}
+            </div>
+          )}
 
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700 dark:hover:bg-blue-600 active:scale-95 transition-all"
-          data-testid="login-submit"
-        >
-          Войти
-        </button>
-      </form>
+          <button
+            type="submit"
+            className="w-full bg-gradient-to-br from-indigo-500 to-violet-600 text-white py-3 rounded-xl font-medium hover:from-indigo-600 hover:to-violet-700 shadow-sm hover:shadow-md active:scale-[0.98] transition-all"
+            data-testid="login-submit"
+          >
+            Войти
+          </button>
+        </form>
 
-      <p
-        className="text-gray-500 dark:text-gray-400 text-sm mt-4"
-        data-testid="login-hint"
-      >
-        Для входа подойдёт любой email и пароль от 6 символов.
-      </p>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mt-4 text-center" data-testid="login-hint">
+          Для входа подойдёт любой email и пароль от 6 символов.
+        </p>
+      </div>
     </div>
   );
 }
